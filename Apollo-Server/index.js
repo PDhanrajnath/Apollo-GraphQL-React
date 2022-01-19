@@ -4,22 +4,22 @@ const { ApolloServer, gql } = require("apollo-server");
 // that together define the "shape" of queries that are executed against
 // your data.
 const typeDefs = gql`
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
-
-  # This "Book" type defines the queryable fields for every book in our data source.
   type Book {
     title: String
     author: String
   }
-
-  # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. In this
-  # case, the "books" query returns an array of zero or more Books (defined above).
+  type User {
+    id: ID!
+    name: String
+  }
   type Query {
     books: [Book]
+    numberSix: Int!
+    user(id: ID!): User
   }
   type Mutation {
     addBook(title: String, author: String): Book
+    addUser(id: String, name: String): User
   }
 `;
 
@@ -34,11 +34,28 @@ const books = [
   },
 ];
 
+const users = [
+  {
+    id: "1",
+    name: "Elizabeth Bennet",
+  },
+  {
+    id: "2",
+    name: "Fitzwilliam Darcy",
+  },
+];
+
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
 const resolvers = {
   Query: {
     books: () => books,
+    numberSix() {
+      return 6;
+    },
+    user(_parent, args) {
+      return users.find((user) => user.id === args.id);
+    },
   },
   Mutation: {
     addBook: (_parent, args, context) => {
@@ -50,6 +67,15 @@ const resolvers = {
       console.log(context.key);
       return book;
     },
+    addUser: (_parent, args, context) => {
+      const usr = {
+        id: args.id,
+        name: args.name,
+      };
+      users.push(usr);
+      console.log(context.key);
+      return usr;
+    },
   },
 };
 
@@ -59,7 +85,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req, res }) => {
-    console.log(req.headers.authorization);
+    // console.log(req.headers.authorization);
     return {
       key: "value",
     };
