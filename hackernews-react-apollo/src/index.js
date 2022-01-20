@@ -1,34 +1,42 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles/index.css';
-import App from './components/App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./styles/index.css";
+import App from "./components/App";
+import reportWebVitals from "./reportWebVitals";
 
 // 1 - apollo client import
 import {
   ApolloProvider,
   ApolloClient,
   createHttpLink,
-  InMemoryCache
-} from '@apollo/client';
+  InMemoryCache,
+} from "@apollo/client";
+// import { onError } from "@apollo/client/link/error";
 
+// const errorLink = onError(({ graphqlErrors, networkError }) => {
+//   if (graphqlErrors) {
+//     graphqlErrors.map(({ message, location, path }) => {
+//       alert(`GraphQL Error !!! ${message}`);
+//     });
+//   }
+// });
 // 2 - creating endpoint for server
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000'
+  uri: "http://localhost:4000",
 });
 
 // 3 - bringing up new instance
 const client = new ApolloClient({
   link: httpLink,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 ReactDOM.render(
-// 4 - binding up pollo provider with passing client instance  
-  <ApolloProvider client={client}>  
+  // 4 - binding up pollo provider with passing client instance
+  <ApolloProvider client={client}>
     <App />
   </ApolloProvider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,26 +1,28 @@
 import { useQuery, gql } from "@apollo/client";
 // import React from 'react';
-import Link from "./link";
+// import Link from "./link";
 
-const FEED_QUERY = gql`
+const GET_USER = gql`
   {
-    books {
-      title
-      author
+    user(id: "2") {
+      id
+      name
     }
   }
 `;
 
 const LinkList = () => {
-  const { data } = useQuery(FEED_QUERY);
-
+  const { data } = useQuery(GET_USER);
   return (
     <div>
       {data && (
         <>
-          {data.books.map((link) => (
-            <Link key={link.id} link={link} />
-          ))}
+          <div>
+            <p>
+              id: {data.user.id}
+              <br></br>name: {data.user.name}
+            </p>
+          </div>
         </>
       )}
     </div>

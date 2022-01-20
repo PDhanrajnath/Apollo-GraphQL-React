@@ -4,7 +4,7 @@ const Link = (props) => {
   const { link } = props;
   return (
     <div>
-      title: {link.title} <br></br> author: ({link.author})
+      id: {link.id} <br></br> name: ({link.name})
     </div>
   );
 };
