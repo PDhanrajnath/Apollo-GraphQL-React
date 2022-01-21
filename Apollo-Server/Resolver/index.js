@@ -16,7 +16,7 @@ exports.resolvers = {
       return usr;
     },
     deleteUser: (_parent, args) => {
-      users.pop(users.id !== args.id);
+      users.pop((user) => user.id === args.id);
       return "pop success";
     },
   },

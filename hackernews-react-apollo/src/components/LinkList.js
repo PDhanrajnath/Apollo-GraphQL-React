@@ -1,18 +1,10 @@
-import { useQuery, gql } from "@apollo/client";
-
-const GET_USER = gql`
-  query user($userId: ID!) {
-    user(id: $userId) {
-      id
-      name
-    }
-  }
-`;
+import { useQuery } from "@apollo/client";
+import { GET_USER } from "../gql/getUser.js";
 
 const LinkList = () => {
-  // const userId = "2";
+  const userId = "2";
   const { loading, error, data } = useQuery(GET_USER, {
-    variables: { userId: "1" },
+    variables: { userId: userId },
   });
   if (loading) {
     return <div>Loading . . . </div>;
