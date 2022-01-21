@@ -1,11 +1,10 @@
-const books = [
-    {
-      title: 'The Awakening',
-      author: 'Kate Chopin',
-    },
-    {
-      title: 'City of Glass',
-      author: 'Paul Auster',
-    },
-  ];
-  
+exports.users = [
+  {
+    id: "1",
+    name: "Elizabeth Bennet",
+  },
+  {
+    id: "2",
+    name: "Fitzwilliam Darcy",
+  },
+];
