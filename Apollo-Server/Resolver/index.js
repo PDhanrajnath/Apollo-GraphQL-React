@@ -5,6 +5,7 @@ exports.resolvers = {
     user(_parent, args) {
       return users.find((user) => user.id === args.id);
     },
+    allUsers: () => users,
   },
   Mutation: {
     addUser: (_parent, args, context) => {

@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
-import LinkList from './LinkList';
-
+import React, { Component } from "react";
+import ListUsers from "./ListUsers";
+import AddUser from "./AddUser";
 class App extends Component {
   render() {
-    return <LinkList />;
+    return (
+      <>
+        <AddUser />
+        <ListUsers />
+      </>
+    );
   }
 }
 
