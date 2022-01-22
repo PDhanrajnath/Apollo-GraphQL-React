@@ -11,6 +11,7 @@ exports.typeDefs = gql`
   }
   type Mutation {
     addUser(id: String, name: String): User
+    updateUser(id: String, name: String): User
     deleteUser(id: String): String
   }
 `;

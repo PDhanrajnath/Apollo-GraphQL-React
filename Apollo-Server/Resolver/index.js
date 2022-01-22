@@ -16,8 +16,17 @@ exports.resolvers = {
       users.push(usr);
       return usr;
     },
+    updateUser: (_parent, args, context) => {
+      const usr = {
+        id: args.id,
+        name: args.name,
+      };
+      users.push(usr);
+      return usr;
+    },
     deleteUser: (_parent, args) => {
-      users.pop((user) => user.id === args.id);
+      let idx = users.indexOf(users.find((user) => user.id === args.id));
+      users.splice(idx, 1);
       return "pop success";
     },
   },
