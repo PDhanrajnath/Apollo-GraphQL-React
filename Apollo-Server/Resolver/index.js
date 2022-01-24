@@ -17,6 +17,8 @@ exports.resolvers = {
       return usr;
     },
     updateUser: (_parent, args, context) => {
+      let idx = users.indexOf(users.find((user) => user.id === args.id));
+      users.splice(idx, 1);
       const usr = {
         id: args.id,
         name: args.name,
@@ -27,7 +29,7 @@ exports.resolvers = {
     deleteUser: (_parent, args) => {
       let idx = users.indexOf(users.find((user) => user.id === args.id));
       users.splice(idx, 1);
-      return "pop success";
+      return true;
     },
   },
 };

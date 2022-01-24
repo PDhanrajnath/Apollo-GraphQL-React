@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GET_USER } from "../gql/getUser.js";
+import { GET_USER } from "../gql/queries";
 import Link from "./link";
 
 const ListUsers = () => {
@@ -15,7 +15,7 @@ const ListUsers = () => {
     <div>
       {data && (
         <>
-          <hr></hr>
+          <hr />
           <h3>List of Users</h3>
           {data.allUsers.map((link) => (
             <Link key={link.id} link={link} />

@@ -1,11 +1,11 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import { ADD_USER, GET_USER } from "../gql/queries";
+import { UPDATE_USER, GET_USER } from "../gql/queries";
 
-const AddUser = () => {
-  const [userId, setUserId] = useState("");
-  const [userName, setUserName] = useState("");
-  const [createUser, { loading, error }] = useMutation(ADD_USER, {
+const UpdateUser = () => {
+  const [updateUserId, setUserId] = useState("");
+  const [updateUserName, setUserName] = useState("");
+  const [createUser, { loading, error }] = useMutation(UPDATE_USER, {
     refetchQueries: [
       {
         query: GET_USER,
@@ -19,11 +19,11 @@ const AddUser = () => {
     return <div>Error !!! {error.message}</div>;
   }
 
-  const addNewUser = () => {
+  const updateUser = () => {
     createUser({
       variables: {
-        userId,
-        userName,
+        updateUserId,
+        updateUserName,
       },
     });
     window.location.reload();
@@ -31,26 +31,27 @@ const AddUser = () => {
 
   return (
     <div>
-      <h3>Add User </h3>
+      <hr />
+      <h3>Update User </h3>
       <input
         type="text"
-        value={userId}
+        value={updateUserId}
         onChange={(e) => setUserId(e.target.value)}
         placeholder="enter user id"
       />
       <br />
       <input
         type="text"
-        value={userName}
+        value={updateUserName}
         onChange={(e) => setUserName(e.target.value)}
         placeholder="enter user name"
       />
       <br />
-      <button onClick={addNewUser} type="submit">
+      <button onClick={updateUser} type="submit">
         Submit
       </button>
     </div>
   );
 };
 
-export default AddUser;
+export default UpdateUser;

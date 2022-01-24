@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ListUsers from "./ListUsers";
 import AddUser from "./AddUser";
 import DeleteUser from "./DeleteUser";
+import UpdateUser from "./UpdateUser";
+
 class App extends Component {
   render() {
     return (
@@ -9,6 +11,7 @@ class App extends Component {
         <AddUser />
         <ListUsers />
         <DeleteUser />
+        <UpdateUser />
       </>
     );
   }
