@@ -7,9 +7,11 @@ exports.typeDefs = gql`
   }
   type Query {
     user(id: ID!): User
+    allUsers: [User]
   }
   type Mutation {
     addUser(id: String, name: String): User
-    deleteUser(id: String): String
+    updateUser(id: String, name: String): User
+    deleteUser(id: String): Boolean
   }
 `;
