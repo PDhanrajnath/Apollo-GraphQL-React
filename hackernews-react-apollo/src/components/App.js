@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import AppPage from "./AppPage";
+import ListUsers from "./ListUsers";
+import AddUser from "./AddUser";
+import DeleteUser from "./DeleteUser";
+import UpdateUser from "./UpdateUser";
 
 class App extends Component {
   render() {
     return (
       <>
-        <AppPage />
+        <AddUser />
+        <ListUsers />
+        <DeleteUser />
+        <UpdateUser />
       </>
     );
   }
