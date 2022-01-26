@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./styles/index.css";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
+import Auth0ProviderWithHistory from "./Auth/Auth";
 
 // 1 - apollo client import
 import {
@@ -11,6 +12,7 @@ import {
   createHttpLink,
   InMemoryCache,
 } from "@apollo/client";
+import { Auth0Provider } from "@auth0/auth0-react";
 // import { onError } from "@apollo/client/link/error";
 
 // const errorLink = onError(({ graphqlErrors, networkError }) => {
@@ -33,9 +35,11 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   // 4 - binding up pollo provider with passing client instance
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
+  <Auth0ProviderWithHistory>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </Auth0ProviderWithHistory>,
   document.getElementById("root")
 );
 

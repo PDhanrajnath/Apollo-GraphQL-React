@@ -9,7 +9,7 @@ exports.resolvers = {
     allUsers: () => users,
   },
   Mutation: {
-    addUser: (_parent, args, { user }) => {
+    addUser: (_parent, args, context) => {
       const usr = {
         id: args.id,
         name: args.name,
