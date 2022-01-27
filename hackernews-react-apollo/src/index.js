@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./styles/index.css";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
+import Auth0ProviderWithHistory from "./Auth/Auth";
 
 // 1 - apollo client import
 import {
@@ -33,9 +34,11 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   // 4 - binding up pollo provider with passing client instance
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
+  <Auth0ProviderWithHistory>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </Auth0ProviderWithHistory>,
   document.getElementById("root")
 );
 

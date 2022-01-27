@@ -1,20 +1,19 @@
-import React, { Component } from "react";
-import ListUsers from "./ListUsers";
-import AddUser from "./AddUser";
-import DeleteUser from "./DeleteUser";
-import UpdateUser from "./UpdateUser";
+import React from "react";
+import AppPage from "./AppPage";
+import { useAuth0 } from "@auth0/auth0-react";
 
-class App extends Component {
-  render() {
-    return (
-      <>
-        <AddUser />
-        <ListUsers />
-        <DeleteUser />
-        <UpdateUser />
-      </>
-    );
-  }
+function App() {
+  const { isLoading, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  return (
+    <>
+      {isAuthenticated | isLoading ? (
+        <button onClick={logout}>logout</button>
+      ) : (
+        <button onClick={loginWithRedirect}>login</button>
+      )}
+      {isAuthenticated && <AppPage />}
+    </>
+  );
 }
 
 export default App;
